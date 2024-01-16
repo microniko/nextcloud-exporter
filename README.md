@@ -51,8 +51,12 @@ TOKEN=$(openssl rand -hex 32)
 occ config:app:set serverinfo token --value "$TOKEN"
 ```
 
-You can then use this generated token in the exported configuration instead of username and password.
+You can then use this generated token in the exported configuration instead of username and password in `/etc/prometheus-nextcloud-exporter.yml` :
 
+```yaml
+server: "https://example.microniko.net"
+authToken: "generatetokenhere"
+```
 ### Username and password authentication
 
 To access the serverinfo API you will need the credentials of an admin user. It is recommended to create a separate user for that purpose. It's also possible for the exporter to generate an "app password", so that the real user password is never saved to the configuration. This also makes the exporter show up in the security panel of the user as a connected application.
